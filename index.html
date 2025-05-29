@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Love Story 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff0f5;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 30px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .intro, .countdown p, .poem p, .love-reasons h2, .timeline h2, .promises h2 {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .photo {
+            width: 250px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 90vw;
+            height: auto;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #ff4d6d;
+            font-size: 18px;
+            opacity: 0.4;
+            pointer-events: none;
+            animation: floatHearts linear infinite;
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) translateX(30px) rotate(360deg);
+            }
+        }
+
+        /* Flip Cards */
+        .love-reasons {
+            margin: 60px auto;
+            max-width: 800px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            perspective: 1000px;
+            width: 180px;
+            height: 120px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 1rem;
+        }
+
+        .card-front {
+            background: #ffe5ec;
+            color: #333;
+        }
+
+        .card-back {
+            background: #ffccd5;
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 30px;
+            background-color: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e63956;
+        }
+
+        /* Timeline styles */
+        .timeline {
+            max-width: 700px;
+            margin: 50px auto;
+            text-align: left;
+            color: #ff4d6d;
+        }
+
+        .timeline h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff4d6d;
+        }
+
+        .timeline ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline ul li {
+            background: #ffe5ec;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .timeline ul li::before {
+            content: "🌟";
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        /* Forever promises */
+        .promises {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffccd5;
+            padding: 20px 30px;
+            border-radius: 20px;
+            color: white;
+            font-style: italic;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .promises h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .promises ul {
+            list-style: none;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .promises ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            font-weight: 500;
+        }
+
+        .promises ul li::before {
+            content: "💞";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 90vw;
+                max-width: 300px;
+                height: auto;
+            }
+            .card-front, .card-back {
+                height: 150px;
+                font-size: 1.2rem;
+            }
+            .title {
+                font-size: 2.2rem;
+            }
+            .photo {
+                width: 90vw;
+                max-width: 250px;
+            }
+            .timeline, .promises {
+                padding: 0 15px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            .card-front, .card-back {
+                height: 130px;
+                font-size: 1rem;
+                padding: 8px;
+            }
+            .promises ul li {
+                font-size: 0.9rem;
+            }
+            .timeline ul li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="bg-music.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- Floating Hearts -->
+<script>
+    for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '❤';
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.fontSize = `${Math.random() * 10 + 10}px`;
+        heart.style.animationDuration = `${Math.random() * 10 + 8}s`;
+        document.body.appendChild(heart);
+    }
+</script>
+
+<div class="container" data-aos="fade-up">
+    <h1 class="title">Happy Anniversary, My Love ❤</h1>
+    <img src="Assets/img.jpg" alt="Couple Photo" class="photo" data-aos="zoom-in" />
+
+    <p class="intro" data-aos="fade-in">
+        From a distance, our hearts beat in sync.<br />
+        Each day apart just proves how strong we are together.
+    </p>
+
+    <div class="countdown" data-aos="fade-up">
+        <p>We’ve been together for:</p>
+        <h1><span id="daysTogether">0</span> days 💕</h1>
+    </div>
+
+    <div class="poem" data-aos="fade-up">
+        <h3>Just for You 💌</h3>
+        <p>
+            Sometimes I wonder, what did I do right?<br />
+            To find a love that feels this bright.<br />
+            You’re my lucky star, my sweetest surprise,<br />
+            The reason I smile with stars in my eyes.
+        </p>
+    </div>
+
+    <!-- Reasons I Love You -->
+    <div class="love-reasons" data-aos="fade-up">
+        <h2>You are my... 💖</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">My...</div>
+                    <div class="card-back">Guggu Muggu 😊</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">My...</div>
+                    <div class="card-back">Tooba Wooba 💪</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">My...</div>
+                    <div class="card-back">Babyyyyyyy 🫶</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">My...</div>
+                    <div class="card-back">My Everything 💖</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline of Us -->
+    <div class="timeline" data-aos="fade-up">
+        <h2>Timeline of Us 🌟</h2>
+        <ul>
+            <li>First text — November 11, 2024, 5:47 PM</li>
+            <li>Day we started talking — February 1, 2025</li>
+            <li>First fight — February 10, 2025 <br><small><em>Every fight makes us more closer ✨</em></small></li>
+            <li>First call — May 6, 2025 (51 minutes 23 seconds)</li>
+        </ul>
+    </div>
+
+    <!-- Forever Promises -->
+    <div class="promises" data-aos="fade-up">
+        <h2>Forever Promises 💞</h2>
+        <ul>
+            <li>I promise to hold your heart with the gentlest care, to listen not just to your words but to the whispers of your soul.</li>
+            <li>I promise to be the light in your darkest days, the smile that greets you even when the world feels heavy.</li>
+            <li>I promise to stand beside you as your unwavering shelter through every storm, holding your hand when the path gets uncertain.</li>
+            <li>I promise to love you beyond reason and time, with a devotion that transcends this life and every lifetime that follows.</li>
+        </ul>
+    </div>
+
+    <!-- Button WITHOUT data-aos attribute -->
+    <a href="your-book-link.html" target="_blank" class="btn">Read More, hehe</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const startDate = new Date("2025-02-01");
+        const now = new Date();
+        const diffTime = now - startDate;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById("daysTogether").innerText = diffDays;
+    });
+</script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+</html>
